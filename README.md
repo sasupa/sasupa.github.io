@@ -1,2 +1,2 @@
 # sasupa.github.io
-Webiste
+Website
