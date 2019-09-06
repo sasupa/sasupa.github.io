@@ -61,3 +61,13 @@ const makeItem = (name, passw) => {
   }
   return newItem;
 };
+
+
+/* Clear the fields after you click the button to show something is happening after the click. Works now only with signUp page
+because elements are named with "username" & password instead of "userid" or "pswrd" */
+
+const clearForm = (form) => {
+  form.username.value = '';
+  form.password.value = '';
+};
+
