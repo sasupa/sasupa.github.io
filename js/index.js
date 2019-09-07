@@ -1,8 +1,4 @@
 
-
-
-
-
 // Aina kun index.html avataan, niin varmistetaan että sivu ymmärtää ettei kukaan ole vielä kirjautunut
 localStorage.setItem("loggedIn", false)
 localStorage.removeItem("userId")
@@ -55,9 +51,9 @@ our code clean and maintainable. */
 
 const makeItem = (name, passw) => {
   const newItem = { 
-    name, 
+    userId: name, 
     passw: '/// TÄHÄN HASH OIKEASTI ///' + ' ' + passw, 
-    userID: Math.round(Math.random() * 10) //Tää vaan testinä. Pitäs integroida ulkonen kirjasto, mut en saanut sitä toimii oikkien takia.
+    number: Math.round(Math.random() * 10) //Tää vaan testinä. Pitäs integroida ulkonen kirjasto, mut en saanut sitä toimii oikkien takia.
   }
   return newItem;
 };
@@ -70,4 +66,40 @@ const clearForm = (form) => {
   form.username.value = '';
   form.password.value = '';
 };
+
+
+/* EVENT LISTENER: Siirtyminen signup-sivulta dashboard-näkymään. Koska koodi on
+on purkkapaikkaa ja patenttia, on vaikea siirtää tän funktion userID:tä dashin 
+näkymään niin, että se tunnistais uuden käyttäjän ja piirtäis muuna kuin "Nyt kirjautuneena: undefined".
+
+Ehdotus:
+1) Luodaan views-filet, jossa generoidaan HTML:ää ja manipuloidaan domia koordinoidusti. Esim
+Dashboardin näkymä oikeilla tiedoilla. Sit eventlistenerit controlleriin (index.js), ei HTML:ään kuten nyt (onclick).
+
+2) Hajautetaan CSS ja DOM-elementit omiin filuihin. VRT. se Base-file harkkaprojektissa.
+
+3) Opetellaan toi DOM-elementtien nimeäminen. Niitä voi kontrolloida monella tapaa: ID:llä, nimellä, tai
+classilla. En tiedä mikä on paras. Itse käytän aina classia.
+
+*/
+
+
+const signUpBtn = document.querySelector('.kliksautus');
+
+
+if (signUpBtn) {
+
+
+  signUpBtn.addEventListener('click', e => {
+    const userId = document.querySelector('.nimi').value;
+   
+   
+    localStorage.setItem("loggedIn", true) // kun käyttäjätunnus ja salasana on oikein, jätetään tieto että on kirjautunut sisään
+    localStorage.setItem("userId", userId)
+    window.open('dashboard.html') // Tähän pitäs jotenkin saada syötettyä kama, et DOMiin menis uuden userin tiedot; localStorageen ne tallentuu oikein.
+    
+  
+
+    console.log(localStorage);
+  })};
 
