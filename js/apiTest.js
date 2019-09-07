@@ -101,7 +101,7 @@
        for (i = 0; i < range.values.length; i++) {
          var row = range.values[i];
          // Print columns A and E, which correspond to indices 0 and 4.
-         appendPre(row[0] + ', ' + row[4]);
+         appendPre(row[0] + ', ' + row[1]);
        }
      } else {
        appendPre('No data found.');
