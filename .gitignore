@@ -1,6 +1,10 @@
 .gitsecret/keys/random_seed
 !*.secret
 
+# Enkrytoitavat tiedostot #
+######################
+apiTest.js
+
 # Compiled source #
 ###################
 *.com
