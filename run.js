@@ -2,9 +2,9 @@ var http = require('http');
 var fs = require('fs');
 var url = require('url');
 const PORT = process.env.PORT || 5000;
+
 // Testaan saanko process.env. toimimaan
-var testVAR = process.env.TEST;
-console.log(testVAR)
+global.String = process.env.TEST;
 
 http.createServer(function (req, res) {
     var q = url.parse(req.url, true);
