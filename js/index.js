@@ -2,10 +2,6 @@
 localStorage.setItem("loggedIn", false)
 localStorage.removeItem("userId")
 
-// Testaan saanko process.env. toimimaan
-var testVAR = process.env.TEST;
-console.log(testVAR)
-
 // Tää funktio tarkastaa login sivulle syötetyt arvot
 function check(form) {
  if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
