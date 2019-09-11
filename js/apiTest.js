@@ -3,7 +3,7 @@
 
  // Client ID voi musta olla näkyvissä, ja GAPI_KEY on Herokun Config var'eissa
  var CLIENT_ID = '69165361410-u5i5011e5ph1iatmqk7o91967p4n1goq.apps.googleusercontent.com';
- var API_KEY = GAPI_KEY;
+ var API_KEY = process.env.GAPI_KEY;
 
  // Array of API discovery doc URLs for APIs used by the quickstart
  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
