@@ -4,7 +4,7 @@ var url = require('url');
 const PORT = process.env.PORT || 5000;
 
 // Testaan saanko process.env. toimimaan
-global.String = process.env.TEST;
+global.globalString = process.env.TEST;
 
 http.createServer(function (req, res) {
     var q = url.parse(req.url, true);

@@ -1,4 +1,4 @@
-console.log(String)
+console.log(globalString)
 
 // Aina kun index.html avataan, niin varmistetaan että sivu ymmärtää ettei kukaan ole vielä kirjautunut
 localStorage.setItem("loggedIn", false)
