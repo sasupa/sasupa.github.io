@@ -1,3 +1,5 @@
+console.log(testVAR)
+
 // Aina kun index.html avataan, niin varmistetaan että sivu ymmärtää ettei kukaan ole vielä kirjautunut
 localStorage.setItem("loggedIn", false)
 localStorage.removeItem("userId")
