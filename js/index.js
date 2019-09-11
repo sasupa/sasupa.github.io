@@ -9,7 +9,7 @@ function check(form) {
   {
     localStorage.setItem("loggedIn", true) // kun käyttäjätunnus ja salasana on oikein, jätetään tieto että on kirjautunut sisään
     localStorage.setItem("userId", form.userid.value)
-    window.open('dashboard.html', "_self") //opens the target page while Id & password matches
+    window.open('dashboard', "_self") //opens the target page while Id & password matches
   }
  else
  {
@@ -21,7 +21,7 @@ function check(form) {
 /* Tied to "Sign up" button. Sends you to the sign-up form. */ 
 
 const signUpPage = () => {
-    window.open('signUpBoard.html')
+    window.open('signUpBoard')
   };
 
 
@@ -96,7 +96,7 @@ if (signUpBtn) {
    
     localStorage.setItem("loggedIn", true) // kun käyttäjätunnus ja salasana on oikein, jätetään tieto että on kirjautunut sisään
     localStorage.setItem("userId", userId)
-    window.open('dashboard.html') // Tähän pitäs jotenkin saada syötettyä kama, et DOMiin menis uuden userin tiedot; localStorageen ne tallentuu oikein.
+    window.open('dashboard') // Tähän pitäs jotenkin saada syötettyä kama, et DOMiin menis uuden userin tiedot; localStorageen ne tallentuu oikein.
     
   
 
