@@ -1,7 +1,10 @@
-
 // Aina kun index.html avataan, niin varmistetaan että sivu ymmärtää ettei kukaan ole vielä kirjautunut
 localStorage.setItem("loggedIn", false)
 localStorage.removeItem("userId")
+
+// Testaan saanko process.env. toimimaan
+var testVAR = process.env.TEST;
+console.log(testVAR)
 
 // Tää funktio tarkastaa login sivulle syötetyt arvot
 function check(form) {
