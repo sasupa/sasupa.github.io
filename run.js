@@ -1,9 +1,17 @@
+const request = require('request');
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
 const PORT = process.env.PORT || 5000;
 const API_KEY = process.env.TEST;
 module.exports = API_KEY;
+
+const weatherURL = "https://api.darksky.net/forecast/a83136801a47dedb3771801008039bdf/37.8267,-122.4233";
+
+request({ url: weatherURL }, (err, res) => {
+    const data = JSON.parse(res.body)
+    console.log(data.currently)
+})
 
 http.createServer(function (req, res) {
     var q = url.parse(req.url, true);
