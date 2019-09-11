@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sasupa/sasupa.github.io/issues"
   },
-  "homepage": "https://github.com/sasupa/sasupa.github.io#readme"
+  "homepage": "https://github.com/sasupa/sasupa.github.io#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
