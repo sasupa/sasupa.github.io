@@ -3,6 +3,7 @@ var fs = require('fs');
 var url = require('url');
 const PORT = process.env.PORT || 5000;
 const API_KEY = process.env.TEST;
+module.exports = API_KEY;
 
 http.createServer(function (req, res) {
     var q = url.parse(req.url, true);

@@ -1,9 +1,12 @@
+var apiKey = require("./run.js");
+console.log(apiKey);
+
 // Täällä pitäs testailla että miten saadaan vaikka ensin vaan jostain
 // APIsta sataa konsoliin
 
  // Client ID voi musta olla näkyvissä, ja GAPI_KEY on Herokun Config var'eissa
  var CLIENT_ID = '69165361410-u5i5011e5ph1iatmqk7o91967p4n1goq.apps.googleusercontent.com';
- var API_KEY = googleConfig.apiKey;
+ var API_KEY = apiKey;
 
  // Array of API discovery doc URLs for APIs used by the quickstart
  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
