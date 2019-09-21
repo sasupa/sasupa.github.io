@@ -14,6 +14,9 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
+// Muuta miten express tulkitsee requesteja
+app.use(express.json())
+
 const port = process.env.PORT || 5000;
 
 app.get('', (req, res) => {
@@ -21,7 +24,6 @@ app.get('', (req, res) => {
 })
 
 app.post("/users", async (req, res) => {
-    console.log(req.body)
     const user = new User (req.body)
 
     try {

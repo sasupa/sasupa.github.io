@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         unique: true,
         lowercase: true,
-        // required: true, (tämäkään ei jostain syystä lauennut)
+        required: true, // nyt pitäs toimia ku laitoin run.js'ään app.use(express.json())
         validate(value){
             if (!validator.isEmail(value)) {
                 throw new Error("Email is invalid")
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        //required: true, (ei jostain syystä toiminut)
+        required: true,
         trim: true,
         validate(value){
             if (value.length <= 6) {
