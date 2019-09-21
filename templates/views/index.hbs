@@ -10,26 +10,8 @@
     <title>Login to Hook Support</title>
     </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        </div>
-    </nav>
-    <br>
+    {{>navbar}}
+
     <div class="container">
     <h1>Login to Hook Support</h1>
     <form>
@@ -39,6 +21,8 @@
         <input type="button" onclick="signUpPage()" value="Sign up"/>
     </form>
     </div>
+
+    {{>info-box}}
     
     <script src="https://sasupa.github.io/js/index.js"></script>
 
