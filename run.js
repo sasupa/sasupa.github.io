@@ -1,37 +1,29 @@
-const request = require('request');
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-const PORT = process.env.PORT || 5000;
-const API_KEY = process.env.TEST;
-module.exports = API_KEY;
+const hbs = require('hbs')
+const express = require('express')
+const path = require("path")
+const app = express()
 
-const weatherURL = "https://api.darksky.net/forecast/a83136801a47dedb3771801008039bdf/37.8267,-122.4233";
+// Define paths for Express config
+const viewsPath = path.join(__dirname, './templates/views')
+const partialsPath = path.join(__dirname, './templates/partials')
 
-request({ url: weatherURL }, (err, res) => {
-    const data = JSON.parse(res.body)
-    console.log(data.currently)
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
+
+const port = process.env.PORT || 5000;
+
+app.get('', (req, res) => {
+    res.render('index', {})
 })
 
-http.createServer(function (req, res) {
-    var q = url.parse(req.url, true);
-    var filename = "." + q.pathname;
-    if (filename == "./") {filename = "./index"}
+app.get("/dashboard/", (req, res) => {
+    res.render('dashboard', {})
+})
 
-    filename = filename + ".html";
-
-    
-
-    fs.readFile(filename, function (err, data) {
-        if (err) {
-            res.writeHead(404, {'content-type':'text/html'});
-            return res.end("404 Not found");
-        }
-        res.writeHead(200, {'content-type':'text/html'});
-        res.write(data);
-        console.log("Incoming request... " + req.url);
-        res.end();
-    })
-}).listen(PORT);
+app.listen(port, () => {
+    console.log("Server is up on port " + port)
+})
 
 console.log("Server listening on port 8080...")

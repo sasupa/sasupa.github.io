@@ -4,6 +4,9 @@
 # Enkrytoitavat tiedostot #
 ######################
 
+# node-modulet saa katottua package.json filesta
+node_modules/
+
 # Compiled source #
 ###################
 *.com
