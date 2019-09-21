@@ -23,6 +23,12 @@ app.get('', (req, res) => {
     res.render('index', {})
 })
 
+app.get('/apitest', (req, res) => {
+    const apiAnswer = process.env.TEST
+
+    res.send(apiAnswer)
+})
+
 app.post("/users", async (req, res) => {
     const user = new User (req.body)
 
