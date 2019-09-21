@@ -2,6 +2,8 @@ const hbs = require('hbs')
 const express = require('express')
 const path = require("path")
 const app = express()
+require("./src/db/mongoose")
+const User = require("./src/models/user")
 
 // Define paths for Express config
 const viewsPath = path.join(__dirname, './templates/views')
@@ -16,6 +18,18 @@ const port = process.env.PORT || 5000;
 
 app.get('', (req, res) => {
     res.render('index', {})
+})
+
+app.post("/users", async (req, res) => {
+    console.log(req.body)
+    const user = new User (req.body)
+
+    try {
+        await user.save()
+        res.status(201).send(user)
+    } catch (e) {
+        res.status(500).send(e)
+    }
 })
 
 app.get("/dashboard/", (req, res) => {
