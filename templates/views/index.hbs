@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Login to Hook Support</title>
-    </head>
+  <head>
+    {{>head}}
+  </head>
 <body>
-    {{>navbar}}
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Hook Support</a>
+    </nav>
 
-    <div class="container">
-    <h1>Login to Hook Support</h1>
+    <div class="container-fluid" style="padding-top: 60px;">
+    <h3>Kirjaudu Hook Supportiin</h3>
     <form>
         Username <input type="text" name="userid"/><br>
         Password <input type="password" name="pswrd"/><br>
         <input type="button" onclick="check(this.form)" value="Login"/><br>
-        <input type="button" onclick="signUpPage()" value="Sign up"/>
+        <!-- JOS annetaan mahis tehdä itse käyttäjä -->
+        <!-- <input type="button" onclick="signUpPage()" value="Sign up"/> -->
     </form>
     </div>
-    
-    <script src="https://sasupa.github.io/js/index.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,9 +1,11 @@
 const hbs = require('hbs')
 const express = require('express')
 const path = require("path")
-const app = express()
 require("./src/db/mongoose")
 const User = require("./src/models/user")
+
+const app = express()
+const port = process.env.PORT || 5000;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, './public')
@@ -15,20 +17,18 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-// Muuta miten express tulkitsee requesteja
-app.use(express.json())
-
-const port = process.env.PORT || 5000;
-
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
+
+// Muuta miten express tulkitsee requesteja
+app.use(express.json())
 
 app.get('', (req, res) => {
     res.render('index', {})
 })
 
 app.get('/apitest', (req, res) => {
-    const apiAnswer = process.env.GAPI_KEY
+    const apiAnswer = process.env.TEST
 
     res.send(apiAnswer)
 })
@@ -44,7 +44,7 @@ app.post("/users", async (req, res) => {
     }
 })
 
-app.get("/dashboard/", (req, res) => {
+app.get("/dashboard", (req, res) => {
     res.render('dashboard', {})
 })
 
