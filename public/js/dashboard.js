@@ -1,6 +1,3 @@
-
-
-
 let loggedIn = localStorage.getItem("loggedIn")
 let userId = localStorage.getItem("userId")
 
@@ -20,3 +17,5 @@ document.querySelector("#logout").addEventListener('click', function (e) {
     localStorage.removeItem("userId")
     window.open('index.html', "_self") //vie suoraan etusivulle, jossa loggedIn vaihtuu falseksi
 });
+
+console.log("Tämä tulee dashboard.js filusta")
