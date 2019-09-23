@@ -21,23 +21,22 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                  <button type="button" class="btn btn-info btn-sm" style="margin: 10px" id="raha">Rahatilanne</button>
-                </a>
+                  <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raha">Rahatilanne</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 10px" id="kal">Kalenteri</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kal">Kalenteri</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 10px" id="keikat">Tulevat keikat</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="keikat">Tulevat keikat</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 10px">Promokuvat</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kuvat">Promokuvat</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 10px">Pipeline</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="pipeline">Pipeline</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 10px">Raportit</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raportit">Raportit</button>
               </li>
             </ul>
 
@@ -45,19 +44,7 @@
                 <span>Asetukset</span></h4>
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Profiili
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Autentikointi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        Kirjaudu ulos
-                    </a>
+                    <button type="button" class="btn btn-light btn-sm" style="margin: 10px 10px 0px" id="profiili">Profiili</button>
                 </li>
           </div>
         </nav>
@@ -67,18 +54,23 @@
             <h1 class="h2">Dashboard</h1>
           </div>
 
-        <div class="card-deck" style="padding: 20px 20px 20px 20px; max-width: 600px;">
-        {{>kalenteri}}
-        {{>rahabox}}
+        {{>kalBox}}
+        <div class="card-deck" style="padding: 20px 20px 20px 20px; max-width: 600px">
+        {{>rahaBox}}
         {{>keikatbox}}
+        {{>kuvatBox}}
+        {{>pipeBox}}
         </div>
 
         </main>
       </div>
     </div>
 
+    {{>settingsmodal}}
+
     <!-- OMA KOODI -->
     <script src="/js/board.js"></script>
+    <script src="/js/settingsmodal.js"></script>
 
     <!-- Optional Bootstrap JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
