@@ -1,7 +1,20 @@
 <!doctype html>
 <html>
   <head>
-    {{>headData}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hook Support Dashboard</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/modal.css">
   </head>
 
   <body>
@@ -54,19 +67,78 @@
             <h1 class="h2">Dashboard</h1>
           </div>
 
-        {{> kalBox}}
-        <div class="card-deck" style="padding: 20px 20px 20px 20px; max-width: 600px">
-        {{> keikatBox}}
-        {{> rahaBox}}
-        {{> kuvatBox}}
-        {{> pipeBox}}
+        <div class="card" id="kalBox" hidden style="width: 840px; margin: 20px 20px 20px 20px;">
+            <h5 class="card-header">Kalenteri</h5>
+            <div class="card-body">
+                    <iframe src="https://calendar.google.com/calendar/embed?height=300&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FHelsinki&amp;src=YjJjb2RzcjJuc2RsNzR2YnAzaW1hbjZzY2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F4511E&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=WEEK" style="border-width:0" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+                </div>
+        </div>
         </div>
 
         </main>
       </div>
     </div>
 
-    {{>settingsmodal}}
+    <!-- The Modal -->
+<div id="settings" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <br>
+    <h4>Profiili ja asetukset</h4>
+      <table style="width:100%">
+        <tr>
+          <td><strong>ID</strong></td>
+          <td>5d8548e19eb95c5539f2c133</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Role</strong></td>
+          <td id="role"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Nimi</strong></td>
+          <td id="nimi"></td>
+          <td>
+            <form id="form1">
+              <input placeholder="Kirjoita uusi nimi" id="uusiNimi">
+              <button>Päivitä</button>
+            </form>
+          </td>
+          <td>Possible Error message</td>
+        </tr>
+        <tr>
+          <td><strong>Sähköposti</strong></td>
+          <td id="email"></td>
+          <td>
+            <form id="form2">
+              <input placeholder="Kirjoita uusi sähköposti" id="uusiEmail">
+              <button>Päivitä</button>
+            </form>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Salasana</strong></td>
+          <td></td>
+          <td>
+            <form id="form3">
+              <input placeholder="Kirjoita uusi salasana" id="uusiSalasana">
+              <button>Vaihda</button>
+            </form>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+      <br>
+      <img src="/img/sasu.png" style="width: 100px; border-radius: 50px">
+  </div>
+
+</div>
 
     <!-- OMA KOODI -->
     <script src="/js/board.js"></script>
