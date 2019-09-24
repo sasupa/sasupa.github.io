@@ -21,10 +21,10 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                  <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raha">Rahatilanne</button>
+                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kal">Kalenteri</button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kal">Kalenteri</button>
+                  <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raha">Rahatilanne</button>
               </li>
               <li class="nav-item">
                 <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="keikat">Tulevat keikat</button>
@@ -53,10 +53,9 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
           </div>
-
-        <!-- LAITA TÄHÄ PARTIALIT JOS TOIMII -->
-
+        {{>boxit}}
         </main>
+        {{>settingsmodal}}
       </div>
     </div>
 

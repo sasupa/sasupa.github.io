@@ -21,8 +21,8 @@ const BoxOnOff = (button, key) => {
 
 // Tarkastetaan mitkä boxit on valittu tällä istunnolla
 const viewCheckedBoxes = () => {
-    keyArray = ["rahaBox", "kalBox", "keikatBox", "kuvatBox", "pipeBox"]
-    buttonArray = [rahaButton, kalButton, keikatButton, kuvatButton, pipeButton]
+    keyArray = ["kalBox", "rahaBox", "keikatBox", "kuvatBox", "pipeBox"]
+    buttonArray = [kalButton, rahaButton, keikatButton, kuvatButton, pipeButton]
     var count = 0
 
     keyArray.forEach((key) => {
@@ -37,7 +37,6 @@ const viewCheckedBoxes = () => {
         }
     })
 }
-viewCheckedBoxes()
 
 // Boxien näkyvyys
 rahaButton.addEventListener('click', function (e) {
@@ -97,8 +96,9 @@ window.onclick = function(event) {
     }
   }
 
-
   // Uloskirjautumisen funktio
 document.querySelector("#logout").addEventListener('click', function (e) {
     window.open('/', "_self") //vie suoraan etusivulle, jossa loggedIn vaihtuu falseksi
 });
+
+viewCheckedBoxes()
