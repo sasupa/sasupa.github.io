@@ -33,6 +33,20 @@ app.get('/apitest', (req, res) => {
     res.send(apiAnswer)
 })
 
+app.get("/users/:id", async (req, res) => {
+    const _id = req.params.id
+
+    try {
+        const user = await User.findById(_id)
+        if (!user) {
+            return res.status(404).send("User not found")
+        }
+        res.send(user)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 app.post("/users", async (req, res) => {
     const user = new User (req.body)
 
@@ -55,5 +69,3 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log("Server is up on port " + port)
 })
-
-console.log("Server listening on port 8080...")

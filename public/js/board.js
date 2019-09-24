@@ -78,8 +78,6 @@ closeModal = (modal, button) => {
 
 // When the user clicks on the settings button, open the modal
 settingsButton.onclick = function() {
-    console.log("Nappia painettu")
-    console.log(settingsModal.style.display)
     if (settingsModal.style.display == "block") {
         closeModal(settingsModal, settingsButton)
     } else {

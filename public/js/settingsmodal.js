@@ -1,18 +1,22 @@
-//Korjaa tää etsimään usereista nimi ja täytä settingsmodaliin
-// fetch("/weather?address=" + location).then((response) => {
-//     response.json().then((data) => {
-//         if (data.error) {
-//             msg1.textContent = data.error
-//         }
-//     })
-// })
+console.log("Tämä tulee settingsmodal.js")
+const nimi = document.querySelector("#nimi")
+const email = document.querySelector("#email")
+const role = document.querySelector("#role")
+
+fetch("/users/5d8963568a9939a1e3da5eed").then((response) => {
+    response.json().then((data) => {
+        console.log(data.name)
+        nimi.textContent = data.name
+        email.textContent = data.email
+        role.textContent = data.role
+    })
+})
 
 const nimiForm = document.getElementById("form1")
 var uusiNimi = document.getElementById("uusiNimi").value
 
 nimiForm.addEventListener("submit", (e) => {
     e.preventDefault()
-
 })
 
 // Tässä malliksi weather fetch pyyntö
