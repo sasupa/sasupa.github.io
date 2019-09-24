@@ -19,6 +19,7 @@ hbs.registerPartials(partialsPath)
 
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
+app.use('/favicon.ico', '/img/favicon.ico')
 
 // Muuta miten express tulkitsee requesteja
 app.use(express.json())
