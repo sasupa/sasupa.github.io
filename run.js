@@ -2,7 +2,8 @@ const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
 require("./src/db/mongoose")
-const User = require("./src/models/user")
+const userRouter = require("./src/routers/user")
+const pageRouter = require("./src/routers/page")
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -23,52 +24,9 @@ app.use(express.static(publicDirectoryPath))
 // Muuta miten express tulkitsee requesteja
 app.use(express.json())
 
-app.get('', (req, res) => {
-    res.render('index', {})
-})
-
-app.get('/apitest', (req, res) => {
-    const apiAnswer = process.env.TEST
-
-    res.send(apiAnswer)
-})
-
-app.get("/users/:id", async (req, res) => {
-    const _id = req.params.id
-
-    try {
-        const user = await User.findById(_id)
-        if (!user) {
-            return res.status(404).send("User not found")
-        }
-        res.send(user)
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
-
-app.post("/users", async (req, res) => {
-    const user = new User (req.body)
-
-    try {
-        await user.save()
-        res.status(201).send(user)
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
-
-app.get("/dashboard", (req, res) => {
-    res.render('dashboard', {})
-})
-
-app.get("/board", (req, res) => {
-    res.render('board', {})
-})
-
-app.get('*', (req, res) => {
-    res.render('404', {})
-})
+// Laita user router päälle
+app.use(userRouter)
+app.use(pageRouter)
 
 app.listen(port, () => {
     console.log("Server is up on port " + port)

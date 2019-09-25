@@ -25,10 +25,10 @@
           <td>
             <form id="form1">
               <input placeholder="Kirjoita uusi nimi" id="uusiNimi">
-              <button>Päivitä</button>
+              <button>Päivitä</button> <span style="color: red;">Possible Error message</span>
             </form>
           </td>
-          <td>Possible Error message</td>
+          <td></td>
         </tr>
         <tr>
           <td><strong>Sähköposti</strong></td>
@@ -36,7 +36,7 @@
           <td>
             <form id="form2">
               <input placeholder="Kirjoita uusi sähköposti" id="uusiEmail">
-              <button>Päivitä</button>
+              <button>Päivitä</button> <span style="color: red;">Possible Error message</span>
             </form>
           </td>
           <td></td>
@@ -47,9 +47,15 @@
           <td>
             <form id="form3">
               <input placeholder="Kirjoita uusi salasana" id="uusiSalasana">
-              <button>Vaihda</button>
+              <button>Vaihda</button> <span style="color: red;">Possible Error message</span>
             </form>
           </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Authorize Google</strong></td>
+          <td><button id="authorize_button" style="display: none;">Authorize</button> <button id="signout_button" style="display: none;">Sign Out</button></td>
+          <td><div id="auth-status" style="display: inline;"></div></td>
           <td></td>
         </tr>
       </table>

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -34,25 +35,40 @@ const userSchema = new mongoose.Schema({
                 throw new Error("Your password can't contain the word 'password'")
             }
         }
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 })
 
-//Sitten kun login saadaan toimimaan
-// userSchema.statics.findByCredentials = async (email, password) => {
-//     const user = await User.findOne({ email })
+userSchema.methods.generateAuthToken = async function () {
+    const user = this
+    const token = jwt.sign({ _id: user._id.toString() }, "minaolensasu")
 
-//     if (!user) {
-//         throw new Error("Unable to login")
-//     }
+    user.tokens = user.tokens.concat({ token })
+    await user.save()
 
-//     const isMatch = await bcrypt.compare(password, user.password)
+    return token
+}
 
-//     if (!isMatch) {
-//         throw new Error("Unable to login")
-//     }
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email })
 
-//     return user
-// }
+    if (!user) {
+        throw new Error("Unable to login")
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if (!isMatch) {
+        throw new Error("Unable to login")
+    }
+
+    return user
+}
 
 // Hash the plain text password before saving
 userSchema.pre("save", async function(next) {
