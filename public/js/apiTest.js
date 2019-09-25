@@ -15,7 +15,7 @@ function handleClientLoad() {
  *  listeners.
  */
 function initClient() {
-  fetch("/apitest").then((response) => {
+  fetch("http://app.hookfinland.fi/apitest").then((response) => {
     response.json().then((data) => {
       API_KEY = data.API_KEY
       CLIENT_ID = data.CLIENT_ID
@@ -88,7 +88,7 @@ function listMajors() {
   document.getElementById('content').textContent = 'Name, Major: '
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1CWVgJTW-CYM8ly940mzskTeoyPfXY2_FTLzn4537Wy8',
-    range: 'Sheet1!A1:B2',
+    range: 'feed!A1:B2',
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
