@@ -85,7 +85,6 @@ function appendPre(message) {
 }
 
 function listMajors() {
-  document.getElementById('content').textContent = 'Name, Major: '
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1CWVgJTW-CYM8ly940mzskTeoyPfXY2_FTLzn4537Wy8',
     range: 'feed!A1:B2',
