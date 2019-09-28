@@ -21,10 +21,11 @@
     "bcrypt": "^3.0.6",
     "express": "^4.17.1",
     "handlebars": "^4.3.0",
-    "hbs": "^4.0.4",
+    "hbs": "^4.0.5",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
+    "multer": "^1.4.2",
     "request": "^2.88.0",
     "validator": "^11.1.0"
   },

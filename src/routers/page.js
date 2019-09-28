@@ -8,11 +8,10 @@ router.get('', (req, res) => {
 })
 
 router.get("/dashboard", (req, res) => {
-    res.render('dashboard', {})
-})
-
-router.get("/board", (req, res) => {
-    res.render('board', {})
+    if (true) {
+        return res.render('dashboard', {})
+    }
+    res.render('404', {})
 })
 
 router.get('/apitest', (req, res) => {

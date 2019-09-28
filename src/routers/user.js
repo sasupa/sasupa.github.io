@@ -1,6 +1,11 @@
 const express = require("express")
 const router = new express.Router()
 const User = require("../models/user")
+const multer = require('multer')
+
+const upload = multer({
+    dest: 'avatars'
+})
 
 // Usereiden HTTP endpointit
 
@@ -116,6 +121,10 @@ router.delete("/users/:id", async (req, res) => {
         res.status(500).send(e)
     }
 
+})
+
+router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
+    res.send()
 })
 
 module.exports = router

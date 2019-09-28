@@ -85,7 +85,6 @@ classilla. En tiedä mikä on paras. Itse käytän aina classia.
 
 const signUpBtn = document.querySelector('.kliksautus');
 
-
 if (signUpBtn) {
 
 

@@ -15,8 +15,8 @@ function handleClientLoad() {
  *  listeners.
  */
 function initClient() {
-  fetch("http://app.hookfinland.fi/apitest").then((response) => {
-    response.json().then((data) => {
+  fetch("http://app.hookfinland.fi/apitest", {mode: 'cors'}).then((response) => {
+      response.json().then((data) => {
       API_KEY = data.API_KEY
       CLIENT_ID = data.CLIENT_ID
   
@@ -78,8 +78,8 @@ function handleSignoutClick(event) {
  *
  * @param {string} message Text to be placed in pre element.
  */
-function appendPre(message) {
-  var pre = document.getElementById('content');
+function appendPre(message, num) {
+  var pre = document.getElementById('content' + num);
   var textContent = document.createTextNode(message + "\n");
   pre.appendChild(textContent);
 }
@@ -87,16 +87,16 @@ function appendPre(message) {
 function haeSheetInfo() {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1CWVgJTW-CYM8ly940mzskTeoyPfXY2_FTLzn4537Wy8',
-    range: 'feed!A1:B2',
+    range: 'feed!A1:B3',
   }).then(function(response) {
-    var pre = document.getElementById('content');
-    pre.textContent = "";
     var range = response.result;
     if (range.values.length > 0) {
       for (i = 0; i < range.values.length; i++) {
+        var pre = document.getElementById('content' + i.toString());
+        pre.textContent = "";
         var row = range.values[i];
         // Print columns A and E, which correspond to indices 0 and 4.
-        appendPre(row[0] + ', ' + row[1]);
+        appendPre(row[1], i.toString());
       }
     } else {
       var pre = document.getElementById('content');
