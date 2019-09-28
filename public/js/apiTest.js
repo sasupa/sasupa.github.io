@@ -1,5 +1,5 @@
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+var SCOPE = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
 
@@ -24,7 +24,7 @@ function initClient() {
           apiKey: API_KEY,
           clientId: CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES
+          scope: SCOPE
         }).then(function () {
           // Listen for sign-in state changes.
           gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
@@ -51,7 +51,7 @@ function updateSigninStatus(isSignedIn) {
 
     // HUOM!! Tässä vaiheessa haetaan data eri funktioilla
 
-    listMajors();
+    haeSheetInfo();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
@@ -84,11 +84,13 @@ function appendPre(message) {
   pre.appendChild(textContent);
 }
 
-function listMajors() {
+function haeSheetInfo() {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1CWVgJTW-CYM8ly940mzskTeoyPfXY2_FTLzn4537Wy8',
     range: 'feed!A1:B2',
   }).then(function(response) {
+    var pre = document.getElementById('content');
+    pre.textContent = "";
     var range = response.result;
     if (range.values.length > 0) {
       for (i = 0; i < range.values.length; i++) {
@@ -97,6 +99,8 @@ function listMajors() {
         appendPre(row[0] + ', ' + row[1]);
       }
     } else {
+      var pre = document.getElementById('content');
+      pre.textContent = "";
       appendPre('No data found.');
     }
   }, function(response) {
