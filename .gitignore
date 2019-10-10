@@ -3,6 +3,7 @@
 
 # Enkrytoitavat tiedostot #
 ######################
+global.env
 
 # node-modulet saa katottua package.json filesta
 node_modules/
