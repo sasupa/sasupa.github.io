@@ -1,6 +1,6 @@
 const express = require("express")
 const router = new express.Router()
-const User = require("../models/user")
+const User = require("../models/userModel")
 const multer = require('multer')
 
 const upload = multer({
@@ -10,7 +10,7 @@ const upload = multer({
 // Usereiden HTTP endpointit
 
 router.post("/users", async (req, res) => {
-    const user = new User (req.body)
+    const user = new User(req.body)
 
     try {
         await user.save()
@@ -94,7 +94,7 @@ router.patch("/users/:id", async (req, res) => {
         const user = await User.findById(req.params.id)
         updates.forEach((update) => user[update] = req.body[update])
         await user.save()
-        
+
         if (!user) {
             res.status(404).send("No user with that ID")
         }
@@ -104,7 +104,7 @@ router.patch("/users/:id", async (req, res) => {
     } catch (e) {
         res.status(400).send(e)
     }
-    
+
 })
 
 router.delete("/users/:id", async (req, res) => {

@@ -2,8 +2,11 @@ const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
 require("./src/db/mongoose")
-const userRouter = require("./src/routers/user")
+const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/page")
+
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -12,6 +15,27 @@ const port = process.env.PORT || 5000;
 const publicDirectoryPath = path.join(__dirname, '/public')
 const viewsPath = path.join(__dirname, '/templates/views')
 const partialsPath = path.join(__dirname, '/templates/partials')
+
+//ENV VARIABLES ACCESS
+dotenv.config({ path: './global.env' });
+
+//DB + MONGOOSE connection options
+const DB = process.env.DATABASE.replace(
+  '<PASSU>',
+  process.env.DATABASE_PASSWORD
+);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true // Tää estää deprication err, en tiiä vittu miksi
+  })
+  .then(() => console.log('DB connection successful!'));
+
+
+
 
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs')
@@ -24,18 +48,18 @@ app.use(express.static(publicDirectoryPath))
 // Muuta miten express tulkitsee requesteja
 app.use(express.json())
 
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+var allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-      res.send(200);
-    }
-    else {
-      next();
-    }
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  }
+  else {
+    next();
+  }
 };
 
 app.use(allowCrossDomain)
@@ -45,5 +69,5 @@ app.use(userRouter)
 app.use(pageRouter)
 
 app.listen(port, () => {
-    console.log("Server is up on port " + port)
-})
+  console.log(`Server is running on port ${port}.`)
+});
