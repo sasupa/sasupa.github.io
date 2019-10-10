@@ -4,7 +4,7 @@ const User = require("../models/user")
 const multer = require('multer')
 
 const upload = multer({
-    dest: 'avatars'
+    dest: ""
 })
 
 // Usereiden HTTP endpointit
