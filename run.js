@@ -1,9 +1,11 @@
 const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
-require("./src/db/mongoose")
+
 const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/page")
+const globalErrorHandler = require("./src/controllers/errorController")
+
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -65,9 +67,14 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain)
 
 // Laita user router päälle
-app.use(userRouter)
+app.use('/users', userRouter)
 app.use(pageRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`)
+
+
 });
+
+
+app.use(globalErrorHandler);

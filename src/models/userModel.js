@@ -27,6 +27,19 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Provide a password.'],
         minlength: 8,
         select: false
+    },
+    passwordConfirm: {
+        type: String,
+        required: [true, 'Please confirm your password'],
+        validate: {
+            //this only works on CREATE and SAVE!!!
+            // Validator funcs return either true or false.
+            validator: function (el) {
+                return el === this.password;
+            },
+            // Standard way of writing a custom validator; below the error message.
+            message: 'Passwords are not the same'
+        }
     }
 
 });
@@ -34,7 +47,7 @@ const userSchema = new mongoose.Schema({
 // MIDDLEWARE
 
 userSchema.pre('save', async function (next) {
-    //Only run this function if password was actually modified
+    //     //Only run this function if password was actually modified
     if (!this.isModified('password')) return next();
 
     // Hash the password with the cost of 12;
