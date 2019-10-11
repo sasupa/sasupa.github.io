@@ -7,6 +7,7 @@ const upload = multer({
     dest: ""
 })
 
+<<<<<<< Updated upstream
 // Usereiden HTTP endpointit
 
 router.post("/users", async (req, res) => {
@@ -126,5 +127,9 @@ router.delete("/users/:id", async (req, res) => {
 router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
     res.send()
 })
+=======
+router.post('/signUp', authController.signup)
+router.post('/login', authController.login)
+>>>>>>> Stashed changes
 
 module.exports = router
