@@ -1,6 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
+// Tää koko file on kopioitu node-scheduler-demo-masterista, tbh en oo ihan varma miten toimii
+
+// Ja tää allaoleva pitäs tunkkaa run.js:ään että 
+
+// const calRouter = require("./src/routers/calRoutes")
+// const bodyParser = require("body-parser");
+// var db = require('mongoskin').db("mongodb://localhost/testdb", { w: 0});
+// 	db.bind('event'); TÄÄHÄN TOKI PITÄS KORVAA OMALLA MONGOLLA
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(calRouter)
+
+// Ja tähän loppuu toi mikä pitäs tunkkaa run.js:ään
+
 router.get('/init', function(req, res){
 	db.event.insert({ 
 		text:"My test event A", 
