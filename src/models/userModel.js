@@ -15,19 +15,19 @@ const userSchema = new mongoose.Schema({
         validate: [validator.isEmail, 'Please provide a valid email.']
     },
 
-
     role: {
         type: String,
         enum: ['artist', 'manager', 'admin']
         // default: 'artist'
     },
-
+        
     password: {
         type: String,
         required: [true, 'Provide a password.'],
         minlength: 8,
         select: false
     },
+
     passwordConfirm: {
         type: String,
         required: [true, 'Please confirm your password'],
@@ -65,6 +65,13 @@ userSchema.pre('save', function (next) {
     next();
 });
 
+userSchema.pre(/^find/, function(next) {
+    //Populate gets data from child reference with one command
+    this.populate({
+      path: 'calendar',
+    });
+    next();
+  });
 
 
 // INSTANCE METHODS

@@ -62,9 +62,9 @@
     </div>
   </div>
 
-  <!-- FLEX-BOXIT ALKAA -->
+  <!-- MODALS ALKAA -->
   {{>modals}}
-  <!-- FLEX-BOXIT LOPPUU -->
+  <!-- MODALS LOPPUU -->
 
   <!-- FOOTER -->
   <footer id="main-footer" class="bg-dark text-white mt-5 pt-3 fixed-bottom">
@@ -77,24 +77,11 @@
             Hook Finland Oy
           </p>
         </div>
-      </nav>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding: 60px">
-        <div
-          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
-        </div>
-        {{>boxit}}
-      </main>
-      {{>settingsmodal}}
+      </div>
     </div>
-  </div>
-
+  </footer>
+      
   <!-- OMA KOODI -->
-  {{!-- <script src="/js/board.js"></script>
-  <script src="/js/apiTest.js"></script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-    onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script> --}}
   <script src="/js/bundle.js"></script>
 
   <!-- Optional Bootstrap JavaScript -->
@@ -126,5 +113,4 @@
   <!-- /WhatsHelp.io widget -->
 
 </body>
-
 </html>

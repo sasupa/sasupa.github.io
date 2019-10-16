@@ -90,8 +90,8 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain)
 
 app.use('/users', userRouter)
+app.use('/cal', calRouter)
 app.use(pageRouter)
-app.use(calRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`)
