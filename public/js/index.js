@@ -1,36 +1,41 @@
-// Login funktio
+/* eslint-disable */
+import '@babel/polyfill'
+import { login, logout } from './login'
 
-signIn.addEventListener("submit", e => {
-    e.preventDefault()
-    const email = inputEmail.value
-    const password = inputPassword.value
-    login(email, password)
-})
 
-const login = async (email, password) => {
-  try {
-    const res = await axios({
-      method: 'post',
-      url: '/users/login',
-      data: {
-        email,
-        password,
+/// DOM ELEMENTS
 
-      }
-  });
-  
-  if (res.data.status === "success") {
-    alert("Logged in successfully!");
-    window.setTimeout(() => {
-      location.assign("/dashboard");
-    }, 1500);
-  }
 
-  }
-  catch (err) {
-    alert(err.response.data.message)
-  }
-}
+const signIn = document.getElementById("signIn")
+const inputEmail = document.getElementById("inputEmail")
+const inputPassword = document.getElementById("inputPassword")
+const rememberMe = document.getElementById("rememberMe")
+
+const logOut = document.getElementById("logout");
+
+
+
+// Login function with condition
+
+if (signIn) signIn.addEventListener('submit', e => {
+  e.preventDefault()
+  const email = inputEmail.value
+  const password = inputPassword.value
+  login(email, password)
+});
+
+
+
+if (logOut) logOut.addEventListener('click', logout);
+
+
+
+
+
+
+
+
+
 
 // Vanhoja funktioita, voi katsoa mallia joihinkin osiin
 
@@ -82,7 +87,7 @@ const login = async (email, password) => {
 //   //To make sure there is an item to persist
 //   if (item) {
 //     localStorage.setItem('userData', JSON.stringify(item));
-    
+
 //   } else {
 //     console.log(error)
 //   }
@@ -134,13 +139,13 @@ const login = async (email, password) => {
 
 //   signUpBtn.addEventListener('click', e => {
 //     const userId = document.querySelector('.nimi').value;
-   
-   
+
+
 //     localStorage.setItem("loggedIn", true) // kun käyttäjätunnus ja salasana on oikein, jätetään tieto että on kirjautunut sisään
 //     localStorage.setItem("userId", userId)
 //     window.open('dashboard') // Tähän pitäs jotenkin saada syötettyä kama, et DOMiin menis uuden userin tiedot; localStorageen ne tallentuu oikein.
-    
-  
+
+
 
 //     console.log(localStorage);
 //   })};
