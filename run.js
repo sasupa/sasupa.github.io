@@ -1,9 +1,11 @@
 const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/page")
 const calRouter = require("./src/routers/calRoutes")
+const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -50,11 +52,26 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
+
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
 // Muuta miten express tulkitsee requesteja
 app.use(express.json())
+
+
+app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
+
+// Test MIDDLEWARE
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.cookies)
+  next();
+})
+
+
+
 
 var allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -72,7 +89,6 @@ var allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain)
 
-// Laita routerit päälle
 app.use('/users', userRouter)
 app.use(pageRouter)
 app.use(calRouter)
