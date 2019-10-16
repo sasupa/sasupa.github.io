@@ -12,192 +12,21 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 pb-1">
-    <div class="container">
-      <a href="index.html" class="navbar-brand">Hook Support</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+  <!-- NAV ALKAA -->
+  {{>navbar}}
 
-        <ul class="navbar-nav ml-auto">
-        <!-- VIEW DROPDOWN -->
-          <li class="nav-item dropdown mr-3">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fas fa-eye"></i> Näkymät
-            </a>
-            <div class="dropdown-menu">
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Kalenteri
-              </a>
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Talous
-              </a>
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Keikat
-              </a>
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Kuvat
-              </a>
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Pipeline
-              </a>
-              <a class="btn btn-primary dropdown-item" data-toggle="collapse" href="#talous" role="button" aria-expanded="false" aria-controls="talous">
-                Raportit
-              </a>
-            </div>
-          </li>
-        <!-- CUSTOMER DROPDOWN -->
-          <li class="nav-item dropdown mr-3">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fas fa-address-card"></i> Asiakas
-            </a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">
-                Roope Salminen
-              </a>
-              <a href="#" class="dropdown-item">
-                Ernest Lawson
-              </a>
-              <a href="#" class="dropdown-item">
-                Christoffer Standberg
-              </a>
-              <a href="#" class="dropdown-item">
-                Shirly Karvinen
-              </a>
-              <a href="#" class="dropdown-item">
-                Mikko Kuoppala
-              </a>
-            </div>
-          </li>
-          <!-- USER DROPDOWN -->
-          <li class="nav-item dropdown mr-3">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fas fa-user"></i> Welcome Ossi
-            </a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" data-toggle="modal" data-target="#profileModal">
-                <i class="fas fa-user-circle"></i> Profile
-              </a>
-              <a href="#" class="dropdown-item" data-toggle="modal" data-target="#settingsModal">
-                <i class="fas fa-cog"></i> Settings
-              </a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a href="login.html" class="nav-link">
-              <i class="fas fa-user-times"></i> Logout
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HEADER -->
-  <header id="main-header" class="py-2 bg-primary text-white shadow">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>
-            <i class="fas fa-cog"></i> Dashboard</h1>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- DASHBOARD MAIN CONTENT -->
+  <!-- DASHBOARD MAIN CONTENT / LEFT SECTION -->
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-8 col-lg-9 col-xl-9 p-0 mt-4">
         <div class="d-flex flex-wrap row-hl p-2">
-
-          <!-- KUVAT FLEXBOX -->
-          <div class="item-hl p-0 m-2 rounded" style="border:1px solid #333;">
-            <div class="card border-0">
-              <div class="card-header">Kuvat</div>
-              <div class="card-body">
-                <ul class="list-unstyled">
-                  <li class="media mb-2">
-                      <img class="mr-3" src="https://source.unsplash.com/random/60x60">
-                      <div class="media-body">
-                          <h5>Promokuva 1</h5>
-                          <p class="small">Oikeudet Sasu Paakkunainen</p>
-                      </div>
-                  </li>
-                  <li class="media mb-2">
-                      <img class="mr-3" src="https://source.unsplash.com/random/60x60">
-                      <div class="media-body">
-                          <h5>Promokuva 2</h5>
-                          <p class="small">Oikeudet Sasu Paakkunainen</p>
-                      </div>
-                  </li>
-                  <li class="media mb-2">
-                      <img class="mr-3" src="https://source.unsplash.com/random/60x60">
-                      <div class="media-body">
-                          <h5>Promokuva 3</h5>
-                          <p class="small">Oikeudet Sasu Paakkunainen</p>
-                      </div>
-                  </li>
-                </ul>
-                <button class="btn btn-info mt-2" type="button">Kaikki kuvat</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- TALOUS BOX -->
-          <div class="item-hl p-0 m-2 rounded collapse" id="talous"style="border:1px solid #333;">
-            <div class="card border-0">
-              <div class="card-header">Talous</div>
-              <div class="card-body pt-0">
-                <table class="table table-hover p-0">
-                  <thead>
-                    <th>Nimike</th>
-                    <th>EUR</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Ansiotulo firmasta</td>
-                      <td>25,000.00</td>
-                    </tr>
-                    <tr>
-                      <td>Muut ansiotulot</td>
-                      <td>10,000.00</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td>Ansiotulot yhteensä</td>
-                      <td>35,000.00</td>
-                    </tr>
-                    <tr>
-                      <td>Arvioitu tulos</td>
-                      <td>40,000.00</td>
-                    </tr>
-                    <tr>
-                      <td>Nostettava osinko</td>
-                      <td>5,000.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button class="btn btn-info" type="button">Seurantaan</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- JOKU TOINEN FLEX-BOX -->
-          <div class="p-2 item-hl m-2 d-none" style="border:1px solid #333;">
-            <p>Tähän tulee kalenteri jossa on hiton pitkä</p>
-          </div>
-
-          <!-- JOKU TOINEN FLEX-BOX -->
-          <div class="p-2 item-hl m-2 d-none" style="border:1px solid #333;">
-            <p>Tähän tulee kalenteri</p>
-          </div>
-
-          <!-- FLEX-BOXIT LOPPUU TÄHÄN -->
+          <!-- FLEX-BOXIT ALKAA -->
+          {{>flexboxes}}
+          <!-- FLEX-BOXIT LOPPUU -->
         </div>
       </div>
 
-  <!-- DASHBOARD RIGHT WIDGET -->
+  <!-- DASHBOARD MAIN CONTENT / RIGHT WIDGET -->
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 mt-4" style="border:1px solid #fff">
         <div class="input-group mb-3">
           <input class="form-control" type="text" placeholder="Add a new reminder...">
@@ -233,6 +62,10 @@
     </div>
   </div>
 
+  <!-- FLEX-BOXIT ALKAA -->
+  {{>modals}}
+  <!-- FLEX-BOXIT LOPPUU -->
+
   <!-- FOOTER -->
   <footer id="main-footer" class="bg-dark text-white mt-5 pt-3 fixed-bottom">
     <div class="container">
@@ -247,56 +80,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- PROFILE MODAL -->
-  <div class="modal fade" id="profileModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title">Add Category</h5>
-          <button class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SETTINGS MODAL -->
-  <div class="modal fade" id="settingsModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title">Add Category</h5>
-          <button class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
-        </div>
-        </div>
-      </div>
-    </div>
 
     <!-- OMA KOODI -->
     <script src="/js/board.js"></script>
