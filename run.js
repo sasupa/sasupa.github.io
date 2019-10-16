@@ -2,19 +2,26 @@ const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
 const cookieParser = require('cookie-parser')
-
 const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/page")
-
+const calRouter = require("./src/routers/calRoutes")
 const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
-
-
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-
 const app = express()
 const port = process.env.PORT || 5000;
+
+// Kalenterin funktioita
+const bodyParser = require("body-parser");
+
+var db = require('mongoskin').db("mongodb://localhost/testdb", { w: 0});
+	db.bind('event');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '/public')
@@ -38,8 +45,6 @@ mongoose
     useUnifiedTopology: true // Tää estää deprication err, en tiiä vittu miksi
   })
   .then(() => console.log('DB connection successful!'));
-
-
 
 
 // Setup handlebars engine and views location
@@ -84,17 +89,12 @@ var allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain)
 
-
-
-// Laita user router päälle
 app.use('/users', userRouter)
 app.use(pageRouter)
+app.use(calRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`)
-
-
 });
-
 
 app.use(globalErrorHandler);
