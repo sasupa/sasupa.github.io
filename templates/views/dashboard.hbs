@@ -1,116 +1,131 @@
 <!doctype html>
 <html>
- <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hook Support Dashboard</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Hook Support Dashboard</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
+</head>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-  </head>
+<body>
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hook Support</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <button type="button" class="btn btn-secondary btn-sm" id="logout">Kirjaudu ulos</button>
+      </li>
+    </ul>
+  </nav>
 
-  <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hook Support</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-          <button type="button" class="btn btn-secondary btn-sm" id="logout">Kirjaudu ulos</button>
-        </li>
-      </ul>
-    </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="padding-top: 60px;">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kal">Kalenteri</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px"
+                id="raha">Rahatilanne</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="keikat">Tulevat
+                keikat</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px"
+                id="kuvat">Promokuvat</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px"
+                id="pipeline">Pipeline</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px"
+                id="raportit">Raportit</button>
+            </li>
+          </ul>
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="padding-top: 60px;">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kal">Kalenteri</button>
-              </li>
-              <li class="nav-item">
-                  <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raha">Rahatilanne</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="keikat">Tulevat keikat</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="kuvat">Promokuvat</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="pipeline">Pipeline</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn btn-info btn-sm" style="margin: 5px 10px 5px" id="raportit">Raportit</button>
-              </li>
-            </ul>
+          <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Asetukset</span></h4>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <button type="button" class="btn btn-light btn-sm" style="margin: 10px 10px 0px"
+                id="profiili">Profiili</button>
+            </li>
+        </div>
+      </nav>
 
-            <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Asetukset</span></h4>
-            <ul class="nav flex-column mb-2">
-                <li class="nav-item">
-                    <button type="button" class="btn btn-light btn-sm" style="margin: 10px 10px 0px" id="profiili">Profiili</button>
-                </li>
-          </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding: 60px">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-          </div>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding: 60px">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+        </div>
         {{>boxit}}
-        </main>
-        {{>settingsmodal}}
-      </div>
+      </main>
+      {{>settingsmodal}}
     </div>
+  </div>
 
-    <!-- OMA KOODI -->
-    <script src="/js/board.js"></script>
-    <script src="/js/apiTest.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-    <script src="/js/settingsmodal.js"></script>
+  <!-- OMA KOODI -->
+  {{!-- <script src="/js/board.js"></script>
+  <script src="/js/apiTest.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script> --}}
+  <script src="/js/bundle.js"></script>
 
-    <!-- Optional Bootstrap JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-    <!-- WhatsHelp.io widget -->
-    <script type="text/javascript">
-        (function () {
-            var options = {
-                whatsapp: "+358456925295", // WhatsApp number
-                call_to_action: "Laita viesti Supportille", // Call to action
-                position: "right", // Position may be 'right' or 'left'
-            };
-            var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
-            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-        })();
-    </script>
-    <!-- /WhatsHelp.io widget -->
+  <!-- Optional Bootstrap JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
-  </body>
+  <!-- WhatsHelp.io widget -->
+  <script type="text/javascript">
+    (function () {
+      var options = {
+        whatsapp: "+358456925295", // WhatsApp number
+        call_to_action: "Laita viesti Supportille", // Call to action
+        position: "right", // Position may be 'right' or 'left'
+      };
+      var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+  </script>
+  <!-- /WhatsHelp.io widget -->
+
+</body>
+
 </html>

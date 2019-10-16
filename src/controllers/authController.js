@@ -10,6 +10,7 @@ const signToken = id => {
     return jwt.sign({ id: id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
     });
+
 };
 
 const createSendToken = (user, statusCode, res) => {
@@ -36,6 +37,7 @@ const createSendToken = (user, statusCode, res) => {
             user: user
         }
     });
+
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -74,6 +76,8 @@ exports.login = catchAsync(async (req, res, next) => {
     createSendToken(user, 200, res);
 });
 
+
+
 exports.protect = catchAsync(async (req, res, next) => {
     // 1) Getting token and check if it's there
     let token;
@@ -84,6 +88,8 @@ exports.protect = catchAsync(async (req, res, next) => {
         req.headers.authorization.startsWith('Bearer')
     ) {
         token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+        token = req.cookies.jwt
     }
 
     if (!token) {
@@ -120,6 +126,57 @@ exports.protect = catchAsync(async (req, res, next) => {
 
     next();
 });
+
+// NEW 
+
+exports.stillLoggedIn = async (req, res, next) => {
+    // 1) Getting token and check if it's there
+    const checkToken = req.cookies.jwt;
+
+    //Bunch of headers as default, try console.log at app.js at .toISoString
+    if (checkToken) {
+
+        // 1) Verifying the token
+        const decoded = await promisify(jwt.verify)(checkToken, process.env.JWT_SECRET);
+
+        // 2) Checking if there is a user
+
+        const currentUser = await User.findById(decoded.id);
+        if (!currentUser) {
+            return next();
+        }
+        // 3) Check if user changed recently changed password
+
+        if (currentUser.changedPasswordAfter(decoded.iat)) {
+            return next();
+        }
+
+        // User is verified. Giving access on user to templates by saving it to locals
+        res.locals.user = currentUser;
+        return next();
+    }
+
+    next();
+
+};
+
+exports.logout = (req, res) => {
+
+    const cookieConfigOptions = {
+        expires: new Date(
+            Date.now() + 10 * 1000 // 10 seconds
+        ),
+        httpOnly: true //securing it
+    };
+
+    res.cookie('jwt', 'SuaLogataanNytPihalle', cookieConfigOptions)
+
+    res.status(200).json({ status: 'success' })
+
+
+}
+
+
 
 exports.restrictTo = (...roles) => {
     return (req, res, next) => {
