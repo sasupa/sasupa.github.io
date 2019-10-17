@@ -2,25 +2,28 @@ const express = require("express");
 const router = express.Router();
 const Calendar = require("../models/calendarModel");
 
-router.post("/:id", async (req, res) => {
+router.post("/newCalEvent", async (req, res) => {
 	const newEvent = await Calendar.create(req.body);
-	// await Calendar.find({}, (err, obj) => {
-	// 	console.log(obj)
-	// })
-	res.send({
-		newEvent
-	});
-})
 
-router.get("/:id", async (req, res) => {
-	const Events = await Calendar.find();
-	// await Calendar.find({}, (err, obj) => {
-	// 	console.log(obj)
-	// })
-	res.send(
-		Events
-	);
-})
+	res.status(201).json({
+		status: 'success',
+		data: {
+			newEvent
+		}
+	});
+});
+
+router.get("/calEvents", async (req, res) => {
+	const events = await Calendar.find();
+
+	res.status(201).json({
+		status: 'success',
+		data: {
+			events
+		}
+	})
+});
+
 
 module.exports = router
 
@@ -70,7 +73,7 @@ module.exports = router
 // 		//set id property for all records
 // 		for (var i = 0; i < data.length; i++)
 // 			data[i].id = data[i]._id;
-		
+
 // 		//output response
 // 		res.send(data);
 // 	});
