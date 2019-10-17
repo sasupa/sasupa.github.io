@@ -23,7 +23,7 @@ const calendarSchema = new mongoose.Schema({
         type: String
     },
 
-    userID: {
+    userId: {
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
