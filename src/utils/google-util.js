@@ -39,8 +39,9 @@ function getConnectionUrl(auth) {
 /**
  * Create the google url to be sent to the client.
  */
-exports.googleUtil = function urlGoogle() {
+exports.urlGoogle = () => {
   const auth = createConnection(); // this is from previous step
   const url = getConnectionUrl(auth);
   return url;
+
 }

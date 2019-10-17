@@ -7,17 +7,19 @@ router.get("/", async (req, res) => {
 
     try {
 
-        const res = await googleUtil.googleUtil;
-        console.log(res)
+        const result = await googleUtil.urlGoogle;
+        console.log(result)
 
         res.status(200).json({
-            status: 'success', data: {
-                res
+            status: 'success',
+            data: {
+                result
             }
         });
 
 
     } catch (err) {
+        console.log(err)
         res.status('400').json({
             message: 'fail',
             err
