@@ -2,22 +2,26 @@ const path = require("path")
 const hbs = require('hbs')
 const express = require('express')
 const cookieParser = require('cookie-parser')
+
 const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/page")
 const calRouter = require("./src/routers/calRoutes")
+const googleRouter = require('./src/routers/googleRoutes')
+
 const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
 const googleUtil = require("./src/utils/google-util")
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express()
+// const router = express.Router();
 const port = process.env.PORT || 5000;
 
 // Kalenterin funktioita
 const bodyParser = require("body-parser");
 
-var db = require('mongoskin').db("mongodb://localhost/testdb", { w: 0});
-	db.bind('event');
+var db = require('mongoskin').db("mongodb://localhost/testdb", { w: 0 });
+db.bind('event');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -90,17 +94,18 @@ var allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain)
 
+
+
+// MOUNTING THE ROUTERS
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
+app.use('/google', googleRouter)
 app.use(pageRouter)
 
-app.get("/google", async (req, res) => {
-  const url = await googleUtil;
-  console.log(url)
 
-	res.send("Hello")
-});
 
+
+//Initiating port
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`)
 });
