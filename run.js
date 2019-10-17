@@ -7,6 +7,7 @@ const pageRouter = require("./src/routers/page")
 const calRouter = require("./src/routers/calRoutes")
 const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
+const googleUtil = require("./src/utils/google-util")
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express()
@@ -92,6 +93,13 @@ app.use(allowCrossDomain)
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
 app.use(pageRouter)
+
+app.get("/google", async (req, res) => {
+  const url = await googleUtil;
+  console.log(url)
+
+	res.send("Hello")
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`)
