@@ -1,6 +1,7 @@
 /* eslint-disable */
 import '@babel/polyfill'
 import { login, logout } from './login'
+import { getGoogleURL } from './google';
 
 
 /// DOM ELEMENTS
@@ -12,6 +13,12 @@ const inputPassword = document.getElementById("inputPassword")
 const rememberMe = document.getElementById("rememberMe")
 
 const logOut = document.getElementById("logout");
+
+const googleBTN = document.getElementById("google-login");
+
+
+
+const state = {};
 
 
 
@@ -25,9 +32,79 @@ if (signIn) signIn.addEventListener('submit', e => {
 });
 
 
-
 if (logOut) logOut.addEventListener('click', logout);
 
+
+////////////////////////////////////////////////////////////////
+// GOOGLE AUTH SHIT //
+////////////////////////////////////////////////////////////////
+
+if (googleBTN) googleBTN.addEventListener('click', async () => {
+
+  const res = await getGoogleURL();
+  console.log(res);
+
+
+});
+
+
+/// WATCHES HASHCHANGE ONLOAD AND LOGS URL
+
+['hashchange', 'load'].forEach(event => window.addEventListener(event, () => {
+  const url = window.location.href;
+
+  // Checking if url includes the code we need
+  if (url.includes('code=')) {
+    // Extracting the code part and saving it to state to make it accessble outside this function
+    state.uri = url.split('code=')[1];
+
+    // Calling the Auth with POST
+
+    console.log(state.uri)
+  }
+
+
+
+  //console.log(window.location.href);
+}));
+
+
+// window.addEventListener('onhashchange', e => {
+//   const url = window.location.href;
+//   console.log(url)
+// })
+
+
+
+
+//////////////////////////////
+/** TÄÄ VERSIO TOIMIIII * */
+//////////////////////////////
+
+// if (googleBTN) googleBTN.addEventListener('click', async () => {
+
+//   const res = await getGoogleUrl();
+
+//   // const url = await y();
+//   // console.log(`Minä olen ${url}`)
+
+
+// });
+
+
+// let token;
+
+// const y = window.addEventListener('load', e => {
+//   const token = window.location.href;
+//   console.log(token);
+//   return token;
+// });
+
+// window.open('https://accounts.google.com/o/oauth2/v2/auth?client_id=159039144246-fuu5h5n07b9s525dhefohaaf9fdg9v9h.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/calendar&redirect_uri=http://localhost:5000/&access_type=offline');
+
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 
 
