@@ -94,7 +94,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
     if (!token) {
         return next(
-            new AppError('You are not logged in. Please log in to get access.', 401)
+            new AppError('You are not logged in. Please log in to proceed.', 401)
         );
     }
 
@@ -112,14 +112,14 @@ exports.protect = catchAsync(async (req, res, next) => {
     }
     // 4) Check if user changed password after the token was issued
 
-    if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next(
-            new AppError(
-                'The user recently changed password. Please login again.',
-                401
-            )
-        );
-    }
+    // if (currentUser.changedPasswordAfter(decoded.iat)) {
+    //     return next(
+    //         new AppError(
+    //             'The user recently changed password. Please login again.',
+    //             401
+    //         )
+    //     );
+    // }
 
     // GRANT ACCESS TO PROTECTED ROUTE AND ENABLES USER OBJECT (THE LOGGED IN USER) FOR FOLLOWING MIDDLEWARE SUCH AS UPDATEPASSWORD
     req.user = currentUser;
@@ -147,9 +147,9 @@ exports.stillLoggedIn = async (req, res, next) => {
         }
         // 3) Check if user changed recently changed password
 
-        if (currentUser.changedPasswordAfter(decoded.iat)) {
-            return next();
-        }
+        // if (currentUser.changedPasswordAfter(decoded.iat)) {
+        //     return next();
+        // }
 
         // User is verified. Giving access on user to templates by saving it to locals
         res.locals.user = currentUser;
@@ -171,7 +171,10 @@ exports.logout = (req, res) => {
 
     res.cookie('jwt', 'SuaLogataanNytPihalle', cookieConfigOptions)
 
-    res.status(200).json({ status: 'success' })
+    res.status(200).json({
+        status: 'success',
+        data: 'Sua logataan pihalle'
+    })
 
 
 }
@@ -194,37 +197,4 @@ exports.restrictTo = (...roles) => {
     };
 };
 
-exports.updatePassword = catchAsync(async (req, res, next) => {
-    // 1) Get user from collection
-    const user = await User.findById(req.user.id).select('+password');
 
-    // 2) Check if POSTed current password is correct
-
-    if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-        return next(new AppError('Your current password is wrong', 401));
-    }
-
-    // 3) If so, update password
-    user.password = req.body.password;
-    user.passwordConfirm = req.body.passwordConfirm;
-
-    // this is for the validator. If not declared, it'll cause an error. Here's why:
-    /* All the other required field already exist, but not passwordConfirm.   console.log(user); prduces this:
-  
-  { role: 'user',
-    _id: 5d96f4680df5dcf8e464985d,
-    name: 'KOKLAUSs',
-    email: 'kokeilu2@gmail.com',
-    password:
-     '$2a$12$0NB9JrGNwdUH3639ae45M.2.A6z1EDMwUKGVNjwUvIycKsmfkQEVy',
-    __v: 0 }
-    
-  THAT'S WHY WE RUN THE MANUAL UPDATE AND MAKE SURE VALIDATOR IS RUN.
-  
-    */
-
-    await user.save();
-
-    // 4) Log the user in, sen JWT
-    createSendToken(user, 200, res);
-});

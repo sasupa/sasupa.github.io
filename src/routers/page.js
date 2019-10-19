@@ -7,14 +7,14 @@ const authController = require('./../controllers/authController')
 const app = express()
 
 
-
 // Sivujen HTTP endpointit
 
 router.get('', (req, res) => {
     res.render('index', {})
 })
 
-
+// // stillLoggedIn MW check for every single view route to verify that user still has access.
+app.use(authController.stillLoggedIn)
 
 router.get("/dashboard", (req, res) => {
     if (true) {
@@ -23,8 +23,7 @@ router.get("/dashboard", (req, res) => {
     res.render('404', {})
 })
 
-// // stillLoggedIn MW check for every single view route to verify that user still has access.
-app.use(authController.stillLoggedIn)
+
 
 router.get('/apitest', (req, res) => {
     res.send({
