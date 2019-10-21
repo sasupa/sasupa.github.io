@@ -11,7 +11,7 @@ const helmet = require('helmet'); // A collection of smaller sec headers
 
 // Routers
 const userRouter = require("./src/routers/userRoutes")
-const pageRouter = require("./src/routers/page")
+const pageRouter = require("./src/routers/pageRoutes")
 const calRouter = require("./src/routers/calRoutes")
 const googleRouter = require('./src/routers/googleRoutes')
 
@@ -127,11 +127,16 @@ app.use(allowCrossDomain)
 
 
 // MOUNTING THE ROUTERS
-
+app.use('/', pageRouter)
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
-app.use('/google', googleRouter)
-app.use(pageRouter)
+// app.use('/google', googleRouter)
+
+// One command for all undefined routes
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
+});
+
 
 
 // const router = express.Router();
