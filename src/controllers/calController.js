@@ -8,7 +8,7 @@ const AppError = require('./../utils/appError');
 exports.getAllEvents = catchAsync(async (req, res, next) => {
     const events = await Calendar.find();
 
-    res.status(201).json({
+    res.status(200).json({
         status: 'success',
         data: {
             events
