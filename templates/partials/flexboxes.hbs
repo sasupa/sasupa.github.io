@@ -1,3 +1,12 @@
+          <!-- KALENTERI FLEXBOX -->
+          <div class="item-hl p-0 m-2 rounded collapse" id="kalenteri" style="border:1px solid #333;">
+            <div class="card border-0">
+              <div class="card-body">
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FHelsinki&amp;src=YjJjb2RzcjJuc2RsNzR2YnAzaW1hbjZzY2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23F4511E&amp;showTz=0&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;showDate=1&amp;showTitle=0&amp;mode=WEEK" style="border-width:0;" width="750" height="350" frameborder="0" scrolling="no"></iframe>
+              </div>
+            </div>
+          </div>          
+          
           <!-- KUVAT FLEXBOX -->
           <div class="item-hl p-0 m-2 rounded collapse" id="kuvat" style="border:1px solid #333;">
             <div class="card border-0">
@@ -69,9 +78,68 @@
             </div>
           </div>
 
-          <!-- JOKU TOINEN FLEX-BOX -->
-          <div class="p-2 item-hl m-2 d-none" style="border:1px solid #333;">
-            <p>Tähän tulee kalenteri jossa on hiton pitkä</p>
+          <!-- KEIKAT -->
+          <div class="item-hl p-0 m-2 rounded collapse" id="keikat" style="border:1px solid #333;">
+            <div class="card border-0">
+              <div class="card-header">Keikat</div>
+              <div class="card-body pt-0">
+                <table class="table table-hover p-0 small">
+                  <thead>
+                    <th>Lisätty</th>
+                    <th>Tapahtuma</th>
+                    <th>Asiakas</th>
+                    <th class="table-success">Palkkio</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>15.10.2019</td>
+                      <td>Nöpö-Felixin esiintyminen Laukaan kunnan tilaisuudessa 5.10.2019</td>
+                      <td>Ohjelmakauppa</td>
+                      <td class="table-success">€1,920.00</td>
+                    </tr>
+                    <tr>
+                      <td>15.10.2019</td>
+                      <td>Nöpö-Felixin esiintyminen Laukaan kunnan tilaisuudessa 5.10.2019</td>
+                      <td>Ohjelmakauppa</td>
+                      <td class="table-success">€1,920.00</td>
+                    </tr>
+                    <tr>
+                      <td>15.10.2019</td>
+                      <td>Nöpö-Felixin esiintyminen Laukaan kunnan tilaisuudessa 5.10.2019</td>
+                      <td>Ohjelmakauppa</td>
+                      <td class="table-success">€1,920.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-info" type="button">Seurantaan</button>
+                </div>
+                
+                <div class="card-header">Lisää keikka</div>
+                <div class="card-body pt-0">
+                  <form class="mt-2">
+                      <input type="date" class="form-control-sm">
+                      <input type="text" class="form-control-sm" placeholder="Tapahtuma">
+                      <select class="form-control-sm" id="gender">
+                        <option hidden >Asiakas</option>
+                        <option>Ohjelmakauppa</option>
+                        <option>Yellow Film</option>
+                        <option>Moskito</option>
+                      </select>
+                      <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" placeholder="Laskutushinta">
+                          <div class="input-group-append">
+                            <span class="input-group-text">€</span>
+                          </div>
+                      </div>
+                      <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" placeholder="Hook">
+                          <div class="input-group-append">
+                            <span class="input-group-text">%</span>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
           </div>
 
           <!-- JOKU TOINEN FLEX-BOX -->
