@@ -14,11 +14,13 @@ const userRouter = require("./src/routers/userRoutes")
 const pageRouter = require("./src/routers/pageRoutes")
 const calRouter = require("./src/routers/calRoutes")
 const googleRouter = require('./src/routers/googleRoutes')
+const finaRouter = require('./src/routers/finaRouter')
 
 // Controllers
 const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
 const googleUtil = require("./src/utils/google-util")
+const AppError = require('./src/utils/appError');
 
 
 const mongoose = require('mongoose');
@@ -130,6 +132,8 @@ app.use(allowCrossDomain)
 app.use('/', pageRouter)
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
+app.use('/finances', finaRouter)
+
 // app.use('/google', googleRouter)
 
 // One command for all undefined routes
