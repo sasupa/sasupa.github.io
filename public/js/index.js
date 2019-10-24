@@ -2,6 +2,7 @@
 import '@babel/polyfill'
 import { login, logout } from './login'
 import { getGoogleURL } from './google';
+import { getFinances } from './fina'
 
 
 /// DOM ELEMENTS
@@ -15,6 +16,7 @@ const rememberMe = document.getElementById("rememberMe")
 const logOut = document.getElementById("logout");
 
 const googleBTN = document.getElementById("google-login");
+const finaBTN = document.getElementById("getfinance")
 
 
 
@@ -33,12 +35,11 @@ if (signIn) signIn.addEventListener('submit', e => {
 
 if (logOut) logOut.addEventListener('click', logout);
 
-// Sasu testaa että Get Finance Data nappi toimii
-const getFinanceData = document.getElementById("getfinance")
-getFinanceData.addEventListener('click', e => {
-  console.log("Painoit Get Finance Data nappia")
-});
-// Testi päättyy
+
+// FINA GET
+
+if (finaBTN) finaBTN.addEventListener('click', getFinances)
+
 
 ////////////////////////////////////////////////////////////////
 // GOOGLE AUTH SHIT //
