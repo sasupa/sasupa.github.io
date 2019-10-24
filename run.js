@@ -3,19 +3,48 @@ const hbs = require('hbs')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 
+// SEC MW
+const rateLimit = require('express-rate-limit'); // How many requests accepted
+const mongoSanitize = require('express-mongo-sanitize'); // Prevents NoSQL injections
+const xss = require('xss-clean'); // Sanitize untrusted HTML (to prevent XSS) 
+const helmet = require('helmet'); // A collection of smaller sec headers
+
+// Routers
 const userRouter = require("./src/routers/userRoutes")
-const pageRouter = require("./src/routers/page")
+const pageRouter = require("./src/routers/pageRoutes")
 const calRouter = require("./src/routers/calRoutes")
 const googleRouter = require('./src/routers/googleRoutes')
 
+// Controllers
 const authController = require('./src/controllers/authController')
 const globalErrorHandler = require("./src/controllers/errorController")
 const googleUtil = require("./src/utils/google-util")
+
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+
 const app = express()
-// const router = express.Router();
-const port = process.env.PORT || 5000;
+
+
+//////////////////////////////
+// SEC MW
+/////////////////////////////
+
+// rateLimiter gives an acceptable amount of requests in a given time frame
+const limiter = rateLimit({
+  max: 500,
+  windowMs: 60 * 60 * 1000, //One hour
+  message: 'Maximum number of requests from this IP reached. Please try again in an hour.'
+});
+app.use('/', limiter);
+
+
+app.use(express.json({ limit: '10kb' })); // Body parser, reading data from body into req.body. Limit tells how much data is accepted
+app.use(mongoSanitize());
+app.use(xss());
+app.use(helmet());
+
 
 // Kalenterin funktioita
 const bodyParser = require("body-parser");
@@ -98,13 +127,20 @@ app.use(allowCrossDomain)
 
 
 // MOUNTING THE ROUTERS
+app.use('/', pageRouter)
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
-app.use('/google', googleRouter)
-app.use(pageRouter)
+// app.use('/google', googleRouter)
+
+// One command for all undefined routes
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
+});
 
 
 
+// const router = express.Router();
+const port = process.env.PORT || 5000;
 
 //Initiating port
 app.listen(port, () => {

@@ -18,9 +18,10 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['artist', 'manager', 'admin']
+        // select: false // This is handled below in MW
         // default: 'artist'
     },
-        
+
     password: {
         type: String,
         required: [true, 'Provide a password.'],
@@ -46,6 +47,7 @@ const userSchema = new mongoose.Schema({
 
 // MIDDLEWARE
 
+
 userSchema.pre('save', async function (next) {
     //     //Only run this function if password was actually modified
     if (!this.isModified('password')) return next();
@@ -65,13 +67,23 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-userSchema.pre(/^find/, function(next) {
+userSchema.pre(/^find/, function (next) {
     //Populate gets data from child reference with one command
     this.populate({
-      path: 'calendar',
+        path: 'calendar',
     });
     next();
-  });
+});
+
+
+/* This middleware filters '__v' and 'role' fields out before exposing data to client. */
+
+userSchema.pre(/^find/, function (next) {
+    this.select('-__v -role')
+    next();
+});
+
+
 
 
 // INSTANCE METHODS

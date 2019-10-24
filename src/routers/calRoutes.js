@@ -1,28 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const Calendar = require("../models/calendarModel");
+const authController = require('./../controllers/authController.js');
+const calController = require('./../controllers/calController');
 
-router.post("/newCalEvent", async (req, res) => {
-	const newEvent = await Calendar.create(req.body);
 
-	res.status(201).json({
-		status: 'success',
-		data: {
-			newEvent
-		}
-	});
-});
+// /cal endpointiin on nyt tiivistetty sekä kaikkien eventtien hakeminen että uuden eventin luominen. Requestin tyyppi (post tai get) määrittää, mitä tapahtuu. Molemmat reitit nyt varattu vaan kirjautuneille.
 
-router.get("/calEvents", async (req, res) => {
-	const events = await Calendar.find();
+router
+	.route('/')
+	.get(authController.protect, calController.getAllEvents)
+	.post(authController.protect, calController.createNewEvent);
 
-	res.status(201).json({
-		status: 'success',
-		data: {
-			events
-		}
-	})
-});
 
 
 module.exports = router

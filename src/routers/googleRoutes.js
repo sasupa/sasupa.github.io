@@ -1,32 +1,32 @@
-const express = require("express");
-const router = express.Router();
-const googleUtil = require('./../utils/google-util')
+// const express = require("express");
+// const router = express.Router();
+// const googleUtil = require('./../utils/google-util')
 
 
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
 
-    try {
+//     try {
 
-        const result = await googleUtil.urlGoogle;
-        console.log(result)
+//         const result = await googleUtil.urlGoogle;
+//         console.log(result)
 
-        res.status(200).json({
-            status: 'success',
-            data: {
-                result
-            }
-        });
-
-
-    } catch (err) {
-        console.log(err)
-        res.status('400').json({
-            message: 'fail',
-            err
-        });
-    }
-
-});
+//         res.status(200).json({
+//             status: 'success',
+//             data: {
+//                 result
+//             }
+//         });
 
 
-module.exports = router
+//     } catch (err) {
+//         console.log(err)
+//         res.status('400').json({
+//             message: 'fail',
+//             err
+//         });
+//     }
+
+// });
+
+
+// module.exports = router
