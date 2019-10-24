@@ -10,11 +10,14 @@ export const getFinances = async () => {
             url: '/finances'
         });
 
-        if (res.data.status = 'success') {
-            console.log(res.data);
+        console.log(res)
 
+        if (res.data.status = 'success')
+            document.getElementById('ansiotulo').textContent = Math.floor(res.data.data.finances[0].ansio) + ' €';
+        document.getElementById('tulos').textContent = Math.floor(res.data.data.finances[0].tulos) + ' €';
+        document.getElementById('paaoma').textContent = Math.floor(res.data.data.finances[0].paaoma) + ' €';
+        document.getElementById('rahaa').textContent = Math.floor(res.data.data.finances[0].rahaa) + ' €';
 
-        }
     }
     catch (err) {
         alert('ERR  🤬 🤬')
