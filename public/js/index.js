@@ -31,15 +31,19 @@ if (logOut) logOut.addEventListener('click', logout);
 
 // FINA GET
 
-if (finaBTN) finaBTN.addEventListener('click', getFinances)
+//if (finaBTN) finaBTN.addEventListener('click', getFinances)
 
 
 // ON LOAD, joka laukoo populoinnin
 window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
-
   // Populoidaan reminderien määrä
   reminderCount()
+
+  // Otetaan uusi finadata sisään ja populoidaan templa
+  getFinances();
+
+
 });
 
 
