@@ -1,28 +1,21 @@
 /* eslint-disable */
 import '@babel/polyfill'
-import { login, logout } from './login'
+import { login, logout } from './login';
 import { getGoogleURL } from './google';
-import { getFinances } from './fina'
+import { getFinances } from './fina';
+import { reminderCount } from './board';
 
 
 /// DOM ELEMENTS
-
 
 const signIn = document.getElementById("signIn")
 const inputEmail = document.getElementById("inputEmail")
 const inputPassword = document.getElementById("inputPassword")
 const rememberMe = document.getElementById("rememberMe")
-
 const logOut = document.getElementById("logout");
-
 const googleBTN = document.getElementById("google-login");
 const finaBTN = document.getElementById("getfinance")
-
-
-
 const state = {};
-
-
 
 // Login function with condition
 
@@ -39,6 +32,15 @@ if (logOut) logOut.addEventListener('click', logout);
 // FINA GET
 
 if (finaBTN) finaBTN.addEventListener('click', getFinances)
+
+
+// ON LOAD, joka laukoo populoinnin
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+
+  // Populoidaan reminderien määrä
+  reminderCount()
+});
 
 
 ////////////////////////////////////////////////////////////////

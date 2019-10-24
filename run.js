@@ -15,6 +15,7 @@ const pageRouter = require("./src/routers/pageRoutes")
 const calRouter = require("./src/routers/calRoutes")
 const googleRouter = require('./src/routers/googleRoutes')
 const finaRouter = require('./src/routers/finaRouter')
+const reminderRouter = require('./src/routers/reminderRoutes')
 
 // Controllers
 const authController = require('./src/controllers/authController')
@@ -133,6 +134,7 @@ app.use('/', pageRouter)
 app.use('/users', userRouter)
 app.use('/cal', calRouter)
 app.use('/finances', finaRouter)
+app.use('/reminders', reminderRouter)
 
 // app.use('/google', googleRouter)
 
