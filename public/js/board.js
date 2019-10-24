@@ -1,3 +1,28 @@
+/* eslint-disable */
+import axios from 'axios'
+
+export const reminderCount = async () => {
+    console.log("reminderCount lähti päälle")
+        try {
+            const res = await axios({
+                async: true, // Tää poistaa yhden deprecation-ilmon, ei muuta
+                method: 'GET',
+                url: '/reminders'
+            });
+    
+            if (res.data.status = 'success') {
+                const reminderAmount = res.data.data.reminders.length;
+                document.querySelector('#reminderBadge').textContent = reminderAmount;
+            }
+        }
+        catch (err) {
+            alert('ERR  🤬 🤬')
+        }
+}
+
+
+/* Vanhaa roinaa...
+
 const rahaButton = document.getElementById("raha")
 const kalButton = document.getElementById("kal")
 const keikatButton = document.getElementById("keikat")
@@ -102,3 +127,5 @@ document.querySelector("#logout").addEventListener('click', function (e) {
 });
 
 viewCheckedBoxes()
+
+*/
