@@ -31,9 +31,14 @@ if (signIn) signIn.addEventListener('submit', e => {
   login(email, password)
 });
 
-
 if (logOut) logOut.addEventListener('click', logout);
 
+// Sasu testaa että Get Finance Data nappi toimii
+const getFinanceData = document.getElementById("getfinance")
+getFinanceData.addEventListener('click', e => {
+  console.log("Painoit Get Finance Data nappia")
+});
+// Testi päättyy
 
 ////////////////////////////////////////////////////////////////
 // GOOGLE AUTH SHIT //
