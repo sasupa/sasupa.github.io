@@ -5,6 +5,11 @@
 ######################
 global.env
 
+# Yksittäiset tiedostot #
+######################
+public/js/bundle.js
+public/js/bundle.js.map
+
 # node-modulet saa katottua package.json filesta
 node_modules/
 
