@@ -2,7 +2,6 @@
 import axios from 'axios'
 
 export const reminderCount = async () => {
-    console.log("reminderCount lähti päälle")
         try {
             const res = await axios({
                 async: true, // Tää poistaa yhden deprecation-ilmon, ei muuta
@@ -13,6 +12,17 @@ export const reminderCount = async () => {
             if (res.data.status = 'success') {
                 const reminderAmount = res.data.data.reminders.length;
                 document.querySelector('#reminderBadge').textContent = reminderAmount;
+                var i = 0
+
+                while (i < reminderAmount) {
+                    var table = document.getElementById("reminderTable");
+                    var row = table.insertRow(i + 1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    cell1.innerHTML = res.data.data.reminders[i].reminder;
+                    cell2.innerHTML = '<input type="checkbox">';
+                    i = i + 1;
+                }
             }
         }
         catch (err) {
